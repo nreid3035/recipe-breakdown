@@ -8,17 +8,19 @@ let store = {
 
 
 
-/**HTML FUNCTIONS*/
+/*****************HTML FUNCTIONS******************/
 function returnHomePage() {
     return `
     <div class="hero-container">
           <img src="" alt="hero-image">
-        </div>
+    </div>
         <h2>Make a list of ingredients to search for recipes, select styles of cuisine as well</h2>
         <div class="search-display hidden">
-
+          <ul id="js-search-list">
+            
+          </ul>
         </div>
-        <form action=''>
+        <form action='' id="js-search-form">
           <div>
             <label for="search-term">Add ingredients below:</label>
             <input type="text" name="search-term" id="search-term" placeholder="ex: garlic, italian">
@@ -26,6 +28,12 @@ function returnHomePage() {
             <input type="submit" id="search-submit">
           </div>
         </form>
+    `
+}
+
+function returnSearchTerm(value) {
+    return `
+    <li>${value}</li>
     `
 }
 
@@ -41,10 +49,27 @@ function render() {
 
 
 
+
+
+
+/**********EVENT LISTENERS ***********/
+
 function addItem() {
     $('main').on('click', '#add-item', function(event) {
         store.searchTerms.push($('#search-term').val())
         console.log(store.searchTerms)
+        $('.search-display').removeClass('hidden')
+        $('.search-display').append(returnSearchTerm(store.searchTerms[store.searchTerms.length - 1]))
+
+
+    })
+}
+
+function submitSearch() {
+    $('main').on('submit', '#js-search-form', function(event) {
+        event.preventDefault();
+        // fetch search results with store.searchTerms data
+        // render
     })
 }
 
