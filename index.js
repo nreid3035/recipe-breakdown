@@ -49,6 +49,22 @@ function render() {
 
 
 
+/*******FETCH FUNCTIONS **********/
+const edamamApiParams = {
+    app_url: 'https://api.edamam.com/search',
+    app_id: '10b62213',
+    app_key: '9a9a4d0eba510cffc8d26aed4315c06b'
+}  
+function fetchRecipes() {
+    
+}
+
+
+
+
+
+
+
 
 
 
