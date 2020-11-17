@@ -31,6 +31,10 @@ function returnHomePage() {
     `
 }
 
+function returnRecipesPage() {
+    `<h1>Testing: </h1>`
+}
+
 function returnSearchTerm(value) {
     return `
     <li>${value}</li>
@@ -55,11 +59,17 @@ const edamamApiParams = {
     app_id: '10b62213',
     app_key: '9a9a4d0eba510cffc8d26aed4315c06b'
 }  
-function fetchRecipes() {
-    
+function fetchRecipes(query) {
+    fetch(`https://api.edamam.com/search?q=${query}&app_id=10b62213&app_key=9a9a4d0eba510cffc8d26aed4315c06b`)
+      .then(response => response.json())
+      .then(responseJson => displayRecipes(responseJson))
+      .catch(error => console.log(error))
 }
 
-
+function displayRecipes(responseJson) {
+    $('main').empty();
+    $('main').append(returnRecipesPage())
+}
 
 
 
@@ -85,6 +95,7 @@ function submitSearch() {
     $('main').on('submit', '#js-search-form', function(event) {
         event.preventDefault();
         // fetch search results with store.searchTerms data
+        fetchRecipes(store.searchTerms[0]);
         // render
     })
 }
@@ -96,6 +107,7 @@ function submitSearch() {
 
 function runFunctions() {
     $(addItem)
+    $(submitSearch)
     $(render)
 }
 
