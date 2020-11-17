@@ -33,8 +33,11 @@ function returnHomePage() {
 }
 
 function returnRecipesPage(responseJson) {
-    return `
-    <h1>Testing: ${responseJson.hits[0].recipe.label}</h1>`
+    let results = [];
+    for (let i = 0; i < responseJson.hits.length; i++) {
+        results.push(`<h1>${responseJson.hits[i].recipe.label}</h1>`)
+    }
+    return results.join('')
 }
 
 function returnSearchTerm(value) {
