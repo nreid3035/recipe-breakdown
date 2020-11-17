@@ -35,7 +35,11 @@ function returnHomePage() {
 function returnRecipesPage(responseJson) {
     let results = [];
     for (let i = 0; i < responseJson.hits.length; i++) {
-        results.push(`<h1>${responseJson.hits[i].recipe.label}</h1>`)
+        results.push(`<h1>${responseJson.hits[i].recipe.label}</h1>
+        <div>
+          <img src="${responseJson.hits[i].recipe.image}" alt="recipe image"
+        </div>
+        <button>Get the ${responseJson.hits[i].recipe.label} recipe here!</button>        `)
     }
     return results.join('')
 }
