@@ -31,9 +31,7 @@ function returnHomePage() {
     `
 }
 
-function returnRecipesPage() {
-    `<h1>Testing: </h1>`
-}
+
 
 function returnSearchTerm(value) {
     return `
@@ -62,14 +60,11 @@ const edamamApiParams = {
 function fetchRecipes(query) {
     fetch(`https://api.edamam.com/search?q=${query}&app_id=10b62213&app_key=9a9a4d0eba510cffc8d26aed4315c06b`)
       .then(response => response.json())
-      .then(responseJson => displayRecipes(responseJson))
+      .then(responseJson => console.log(responseJson))
       .catch(error => console.log(error))
 }
 
-function displayRecipes(responseJson) {
-    $('main').empty();
-    $('main').append(returnRecipesPage())
-}
+
 
 
 
