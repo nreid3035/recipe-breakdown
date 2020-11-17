@@ -1,6 +1,7 @@
 let store = {
     searchTerms: [],
-    searching: false
+    searching: false,
+    response: ''
 }
 
 
@@ -31,7 +32,10 @@ function returnHomePage() {
     `
 }
 
-
+function returnRecipesPage(responseJson) {
+    return `
+    <h1>Testing: ${responseJson.hits[0].recipe.label}</h1>`
+}
 
 function returnSearchTerm(value) {
     return `
@@ -44,8 +48,12 @@ function returnSearchTerm(value) {
 
 /*********RENDER FUNCTION **************/
 function render() {
+    $('main').empty();
     if (store.searching === false) {
         $('main').append(returnHomePage())
+    } else if (store.searching === true) {
+      console.log(store.response)
+        $('main').append(returnRecipesPage(store.response))
     }
 }
 
@@ -60,7 +68,11 @@ const edamamApiParams = {
 function fetchRecipes(query) {
     fetch(`https://api.edamam.com/search?q=${query}&app_id=10b62213&app_key=9a9a4d0eba510cffc8d26aed4315c06b`)
       .then(response => response.json())
-      .then(responseJson => console.log(responseJson))
+      .then(responseJson => {
+          store.response = responseJson;
+          store.searching = true;
+          render();
+      })
       .catch(error => console.log(error))
 }
 
