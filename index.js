@@ -121,6 +121,11 @@ function fetchRecipes(query) {
       .catch(error => console.log(error))
 }
 
+function fetchFoodishImage() {
+    fetch(`https://foodish-api.herokuapp.com/api/images`)
+}
+
+
 
 /*function fetchFullNutrition(hitsIdx) {
     let data = {
