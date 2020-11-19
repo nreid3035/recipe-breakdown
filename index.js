@@ -1,8 +1,9 @@
 let store = {
     searchTerms: [],
     searching: false,
+    responseSaved: false,
     response: '',
-    chosenRecipeIdx: ''
+    savedRecipe: ''
 }
 
 
@@ -52,12 +53,47 @@ function returnSearchTerm(value) {
     `
 }
 
+function returnRecipeDetails(savedRecipe, obj) {
+    let result = [];
+    result.push(`<h2>${savedRecipe.label}</h2>
+    <div>
+    <img src="${savedRecipe.image}"
+    </div>
+    <h3>Source: ${savedRecipe.source}</h3>
+    <p>Calories: ${savedRecipe.calories}</p>`);
+    
+    let ingredientList = [];
+    for (let i = 0; i < savedRecipe.ingredientLines.length; i++) {
+      ingredientList.push(`<li>${savedRecipe.ingredientLines[i]}</li>`)
+    }
+    ingredientList.unshift('<ul>');
+    ingredientList.push('</ul>');
+    result.push(ingredientList.join(''));
+
+    let nutrientList = [];
+    for (let prop in obj) {
+        console.log(prop)
+      nutrientList.push(`
+      <li>${obj[prop].label}: ${obj[prop].quantity}${obj[prop].unit}</li>
+      `)
+    }
+    nutrientList.unshift('<ul>');
+    nutrientList.push('</ul>');
+    result.push(nutrientList.join(''))
+
+    return result.join('')
+}
+
 
 
 
 /*********RENDER FUNCTION **************/
 function render() {
     $('main').empty();
+    if (store.responseSaved === true) {
+        $('main').append(returnRecipeDetails(store.savedRecipe, store.savedRecipe.totalNutrients));
+        return
+    }
     if (store.searching === false) {
         $('main').append(returnHomePage())
     } else if (store.searching === true) {
@@ -86,13 +122,13 @@ function fetchRecipes(query) {
 }
 
 
-function fetchFullNutrition(hitsIdx) {
+/*function fetchFullNutrition(hitsIdx) {
     let data = {
         mode: 'no-cors',
         title: store.response.hits[hitsIdx].recipe.label,
         ingredientLines: store.response.hits[hitsIdx].recipe.ingredientLines
     }
-    fetch(`https://api.edamam.com/api/nutrition-details?app_id=10b62213&app_key=9a9a4d0eba510cffc8d26aed4315c06b&title=${store.response.hits[hitsIdx].recipe.label}&${store.response.hits[hitsIdx].ingredientLines}`, {
+    fetch(`https://api.edamam.com/api/nutrition-details?app_id=10b62213&app_key=9a9a4d0eba510cffc8d26aed4315c06b&title=${store.response.hits[hitsIdx].recipe.label}&ingr=${store.response.hits[hitsIdx].ingredientLines}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -103,7 +139,13 @@ function fetchFullNutrition(hitsIdx) {
     .then(responseJson => {
         console.log(responseJson)
     })
-}
+}*/
+
+/*function fetchNutrition(hitsIdx) {
+    let encodedIngr = encodeURI(`${store.response.hits[hitsIdx].recipe.ingredientLines}`)
+    console.log(encodedIngr)
+    fetch(``)
+}*/
 
 
 
@@ -139,7 +181,9 @@ function submitSearch() {
 function getRecipeButton() {
     $('main').on('click', '.recipe-button', function(event) {
        let hitsIdx = $(this).attr('id')
-       fetchFullNutrition(hitsIdx);
+       store.savedRecipe = store.response.hits[hitsIdx].recipe;
+       store.responseSaved = true;
+       render();
     })
 }
 
