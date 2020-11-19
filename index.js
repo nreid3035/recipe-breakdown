@@ -1,5 +1,6 @@
 let store = {
     searchTerms: [],
+    initialImage: '',
     searching: false,
     responseSaved: false,
     response: '',
@@ -15,7 +16,7 @@ let store = {
 function returnHomePage() {
     return `
     <div class="hero-container">
-          <img src="" alt="hero-image">
+          <img src="${store.initialImage}" alt="hero-image">
     </div>
         <h2>Make a list of ingredients to search for recipes, select styles of cuisine as well</h2>
         <div class="search-display hidden">
@@ -87,20 +88,6 @@ function returnRecipeDetails(savedRecipe, obj) {
 
 
 
-/*********RENDER FUNCTION **************/
-function render() {
-    $('main').empty();
-    if (store.responseSaved === true) {
-        $('main').append(returnRecipeDetails(store.savedRecipe, store.savedRecipe.totalNutrients));
-        return
-    }
-    if (store.searching === false) {
-        $('main').append(returnHomePage())
-    } else if (store.searching === true) {
-      console.log(store.response)
-        $('main').append(returnRecipesPage(store.response))
-    }
-}
 
 
 
@@ -122,7 +109,12 @@ function fetchRecipes(query) {
 }
 
 function fetchFoodishImage() {
-    fetch(`https://foodish-api.herokuapp.com/api/images`)
+    fetch(`https://foodish-api.herokuapp.com/api/`)
+      .then(response => response.json())
+      .then(responseJson =>
+        store.initialImage = responseJson.image
+        )
+      .catch(error => console.log(error))
 }
 
 
@@ -154,6 +146,21 @@ function fetchFoodishImage() {
 
 
 
+/*********RENDER FUNCTION **************/
+function render() {
+    $('main').empty();
+    if (store.responseSaved === true) {
+        $('main').append(returnRecipeDetails(store.savedRecipe, store.savedRecipe.totalNutrients));
+        return
+    }
+    if (store.searching === false) {
+        console.log(store.initialImage);
+        $('main').append(returnHomePage())
+    } else if (store.searching === true) {
+      console.log(store.response)
+        $('main').append(returnRecipesPage(store.response))
+    }
+}
 
 
 
