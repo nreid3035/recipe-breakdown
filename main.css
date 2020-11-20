@@ -2,6 +2,18 @@
     box-sizing: border-box;
 }
 
+header {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    background-color: white;
+}
+
+main {
+    width: 100%;
+    margin-top: 150px;
+}
+
 .hero-container {
     width: 80%;
     height: auto;

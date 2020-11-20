@@ -44,7 +44,6 @@ function returnRecipesPage(responseJson) {
         <button class="recipe-button" id="${i}">Get the ${responseJson.hits[i].recipe.label} recipe here!</button>
         `)
     }
-    results.push(`<button class="home-button">Home</button>`)
     return results.join('')
 }
 
@@ -78,7 +77,6 @@ function returnRecipeDetails(savedRecipe, obj) {
 
     result.push(`<a href="${savedRecipe.url}" target="_blank">Click here for recipe directions</a>`)
 
-    result.push(`<button class="home-button">Home</button>`)
     return result.join('')
 }
 
@@ -186,7 +184,7 @@ function getRecipeButton() {
 }
 
 function handleHomeButton() {
-    $('main').on('click', '.home-button', function(event) {
+    $('header').on('click', '.home-button', function(event) {
         store.searching = false;
         store.responseSaved = false;
         render();
