@@ -16,7 +16,7 @@ let store = {
 function returnHomePage(responseJson) {
     return `
     <div class="hero-container">
-          <img src="${responseJson.image}" alt="hero-image">
+          <img class="hero-img" src="${responseJson.image}" alt="hero-image">
     </div>
         <h2>Make a list of ingredients to search for recipes, select styles of cuisine as well</h2>
         <div class="search-display hidden">
@@ -26,8 +26,8 @@ function returnHomePage(responseJson) {
         </div>
         <form action='' id="js-search-form">
           <div>
-            <label for="search-term">Add ingredients below:</label>
-            <input type="text" name="search-term" id="search-term" placeholder="ex: garlic, italian">
+            <label for="search-term">Search by ingredient below:</label>
+            <input type="text" name="search-term" id="search-term" placeholder="ex: garlic, chicken">
             <input type="submit" id="search-submit">
           </div>
         </form>
@@ -44,13 +44,8 @@ function returnRecipesPage(responseJson) {
         <button class="recipe-button" id="${i}">Get the ${responseJson.hits[i].recipe.label} recipe here!</button>
         `)
     }
+    results.push(`<button class="home-button">Home</button>`)
     return results.join('')
-}
-
-function returnSearchTerm(value) {
-    return `
-    <li>${value}</li>
-    `
 }
 
 function returnRecipeDetails(savedRecipe, obj) {
@@ -81,6 +76,7 @@ function returnRecipeDetails(savedRecipe, obj) {
     nutrientList.push('</ul>');
     result.push(nutrientList.join(''))
 
+    result.push(`<button class="home-button">Home</button>`)
     return result.join('')
 }
 
@@ -187,6 +183,14 @@ function getRecipeButton() {
     })
 }
 
+function handleHomeButton() {
+    $('main').on('click', '.home-button', function(event) {
+        store.searching = false;
+        store.responseSaved = false;
+        render();
+    })
+}
+
 
 
 
@@ -195,6 +199,7 @@ function getRecipeButton() {
 function runFunctions() {
     $(submitSearch)
     $(getRecipeButton)
+    $(handleHomeButton)
     $(render)
 }
 
