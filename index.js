@@ -13,10 +13,10 @@ let store = {
 
 
 /*****************HTML FUNCTIONS******************/
-function returnHomePage() {
+function returnHomePage(responseJson) {
     return `
     <div class="hero-container">
-          <img src="${store.initialImage}" alt="hero-image">
+          <img src="${responseJson.image}" alt="hero-image">
     </div>
         <h2>Make a list of ingredients to search for recipes, select styles of cuisine as well</h2>
         <div class="search-display hidden">
@@ -111,9 +111,8 @@ function fetchRecipes(query) {
 function fetchFoodishImage() {
     fetch(`https://foodish-api.herokuapp.com/api/`)
       .then(response => response.json())
-      .then(responseJson =>
-        store.initialImage = responseJson.image
-        )
+      .then(responseJson => 
+        $('main').append(returnHomePage(responseJson)))
       .catch(error => console.log(error))
 }
 
@@ -154,8 +153,7 @@ function render() {
         return
     }
     if (store.searching === false) {
-        console.log(store.initialImage);
-        $('main').append(returnHomePage())
+        fetchFoodishImage();
     } else if (store.searching === true) {
       console.log(store.response)
         $('main').append(returnRecipesPage(store.response))
