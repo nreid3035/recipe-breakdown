@@ -28,7 +28,6 @@ function returnHomePage(responseJson) {
           <div>
             <label for="search-term">Add ingredients below:</label>
             <input type="text" name="search-term" id="search-term" placeholder="ex: garlic, italian">
-            <input type="button" name="add-item" id="add-item" value="ADD ITEM">
             <input type="submit" id="search-submit">
           </div>
         </form>
@@ -98,7 +97,7 @@ const edamamApiParams = {
     app_key: '9a9a4d0eba510cffc8d26aed4315c06b'
 }  
 function fetchRecipes(query) {
-    fetch(`https://api.edamam.com/search?q=${query}&app_id=10b62213&app_key=9a9a4d0eba510cffc8d26aed4315c06b`)
+    fetch(`https://api.edamam.com/search?q=${query}&q=chicken&app_id=10b62213&app_key=9a9a4d0eba510cffc8d26aed4315c06b`)
       .then(response => response.json())
       .then(responseJson => {
           store.response = responseJson;
@@ -155,7 +154,7 @@ function render() {
     if (store.searching === false) {
         fetchFoodishImage();
     } else if (store.searching === true) {
-      console.log(store.response)
+        console.log(store.response)
         $('main').append(returnRecipesPage(store.response))
     }
 }
@@ -168,22 +167,13 @@ function render() {
 
 /**********EVENT LISTENERS ***********/
 
-function addItem() {
-    $('main').on('click', '#add-item', function(event) {
-        store.searchTerms.push($('#search-term').val())
-        console.log(store.searchTerms)
-        $('.search-display').removeClass('hidden')
-        $('.search-display').append(returnSearchTerm(store.searchTerms[store.searchTerms.length - 1]))
-
-
-    })
-}
 
 function submitSearch() {
     $('main').on('submit', '#js-search-form', function(event) {
         event.preventDefault();
+        let query = $('#search-term').val()
         // fetch search results with store.searchTerms data
-        fetchRecipes(store.searchTerms[0]);
+        fetchRecipes(query);
         // render
     })
 }
@@ -203,7 +193,6 @@ function getRecipeButton() {
 
 
 function runFunctions() {
-    $(addItem)
     $(submitSearch)
     $(getRecipeButton)
     $(render)
