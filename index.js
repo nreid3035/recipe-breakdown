@@ -76,6 +76,8 @@ function returnRecipeDetails(savedRecipe, obj) {
     nutrientList.push('</ul>');
     result.push(nutrientList.join(''))
 
+    result.push(`<a href="${savedRecipe.url}" target="_blank">Click here for recipe directions</a>`)
+
     result.push(`<button class="home-button">Home</button>`)
     return result.join('')
 }
