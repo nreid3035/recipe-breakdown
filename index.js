@@ -15,22 +15,19 @@ let store = {
 /*****************HTML FUNCTIONS******************/
 function returnHomePage(responseJson) {
     return `
-    <div class="hero-container">
+    <div class="image-space">
+      <div class="hero-container">
           <img class="hero-img" src="${responseJson.image}" alt="hero-image">
+      </div>
     </div>
-        <h2>Make a list of ingredients to search for recipes, select styles of cuisine as well</h2>
-        <div class="search-display hidden">
-          <ul id="js-search-list">
-            
-          </ul>
-        </div>
+    <div class="other-space">
+        <h2 class="search-instructions">Make a list of ingredients to search for recipes, select styles of cuisine as well</h2>
         <form action='' id="js-search-form">
-          <div>
-            <label for="search-term">Search by ingredient below:</label>
-            <input type="text" name="search-term" id="search-term" placeholder="ex: garlic, chicken">
-            <input type="submit" id="search-submit">
-          </div>
+            <label class="form-elem" for="search-term">Search by ingredient below:</label>
+            <input class="form-elem" type="text" name="search-term" id="search-term" placeholder="ex: garlic, chicken">
+            <input class="form-elem" type="submit" id="search-submit">
         </form>
+    </div>
     `
 }
 
