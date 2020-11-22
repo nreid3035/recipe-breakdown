@@ -34,21 +34,25 @@ function returnHomePage(responseJson) {
 function returnRecipesPage(responseJson) {
     let results = [];
     for (let i = 0; i < responseJson.hits.length; i++) {
-        results.push(`<h1>${responseJson.hits[i].recipe.label}</h1>
-        <div>
-          <img src="${responseJson.hits[i].recipe.image}" alt="recipe image"
-        </div>
-        <button class="recipe-button" id="${i}">Get more info on ${responseJson.hits[i].recipe.label} here!</button>
-        `)
+        results.push(`
+        <div class="recipe">
+          <h1>${responseJson.hits[i].recipe.label}</h1>
+          <div class="recipe-img-container">
+            <img src="${responseJson.hits[i].recipe.image}" alt="recipe image"/>
+          </div>
+          <button class="recipe-button" id="${i}">Get more info on ${responseJson.hits[i].recipe.label} here!</button>
+        </div>`)
     }
+    results.unshift('<div class="recipe-page-container">');
+    results.push('</div>');
     return results.join('')
 }
 
 function returnRecipeDetails(savedRecipe, obj) {
     let result = [];
     result.push(`<h2>${savedRecipe.label}</h2>
-    <div>
-    <img src="${savedRecipe.image}"
+    <div class="food-img-container">
+      <img src="${savedRecipe.image}"/>
     </div>
     <h3>Source: ${savedRecipe.source}</h3>
     <p>Calories: ${savedRecipe.calories}</p>`);
@@ -59,6 +63,7 @@ function returnRecipeDetails(savedRecipe, obj) {
     }
     ingredientList.unshift('<ul>');
     ingredientList.push('</ul>');
+    ingredientList.unshift('<h4>Ingredients</h4>')
     result.push(ingredientList.join(''));
 
     let nutrientList = [];
@@ -70,9 +75,12 @@ function returnRecipeDetails(savedRecipe, obj) {
     }
     nutrientList.unshift('<ul>');
     nutrientList.push('</ul>');
+    nutrientList.unshift('<h4>Nutrition Information</h4>')
     result.push(nutrientList.join(''))
 
-    result.push(`<a href="${savedRecipe.url}" target="_blank">Click here for recipe directions</a>`)
+    result.push(`<a href="${savedRecipe.url}" target="_blank">Click here for recipe directions</a>`);
+    result.unshift('<div class="recipe-info">')
+    result.push('</div>')
 
     return result.join('')
 }
