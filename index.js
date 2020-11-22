@@ -41,7 +41,7 @@ function returnRecipesPage(responseJson) {
         <div>
           <img src="${responseJson.hits[i].recipe.image}" alt="recipe image"
         </div>
-        <button class="recipe-button" id="${i}">Get the ${responseJson.hits[i].recipe.label} recipe here!</button>
+        <button class="recipe-button" id="${i}">Get more info on ${responseJson.hits[i].recipe.label} here!</button>
         `)
     }
     return results.join('')
@@ -110,34 +110,6 @@ function fetchFoodishImage() {
         $('main').append(returnHomePage(responseJson)))
       .catch(error => console.log(error))
 }
-
-
-
-/*function fetchFullNutrition(hitsIdx) {
-    let data = {
-        mode: 'no-cors',
-        title: store.response.hits[hitsIdx].recipe.label,
-        ingredientLines: store.response.hits[hitsIdx].recipe.ingredientLines
-    }
-    fetch(`https://api.edamam.com/api/nutrition-details?app_id=10b62213&app_key=9a9a4d0eba510cffc8d26aed4315c06b&title=${store.response.hits[hitsIdx].recipe.label}&ingr=${store.response.hits[hitsIdx].ingredientLines}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(responseJson => {
-        console.log(responseJson)
-    })
-}*/
-
-/*function fetchNutrition(hitsIdx) {
-    let encodedIngr = encodeURI(`${store.response.hits[hitsIdx].recipe.ingredientLines}`)
-    console.log(encodedIngr)
-    fetch(``)
-}*/
-
 
 
 /*********RENDER FUNCTION **************/
