@@ -21,10 +21,10 @@ function returnHomePage(responseJson) {
       </div>
     </div>
     <div class="other-space">
-        <h2 class="search-instructions">Make a list of ingredients to search for recipes, select styles of cuisine as well</h2>
+        <h2 class="search-instructions">Seach for recipes below and find a full nutrition profile!</h2>
         <form action='' id="js-search-form">
-            <label class="form-elem" for="search-term">Search by ingredient below:</label>
-            <input class="form-elem" type="text" name="search-term" id="search-term" placeholder="ex: garlic, chicken">
+            <label class="form-elem" for="search-term">Search by ingredient or style:</label>
+            <input class="form-elem" type="text" name="search-term" id="search-term" placeholder="ex: garlic, italian">
             <input class="form-elem" type="submit" id="search-submit">
         </form>
     </div>
@@ -36,7 +36,7 @@ function returnRecipesPage(responseJson) {
     for (let i = 0; i < responseJson.hits.length; i++) {
         results.push(`
         <div class="recipe">
-          <h1>${responseJson.hits[i].recipe.label}</h1>
+          <h3 class="recipe-label">${responseJson.hits[i].recipe.label}</h1>
           <div class="recipe-img-container">
             <img src="${responseJson.hits[i].recipe.image}" alt="recipe image"/>
           </div>
@@ -50,11 +50,11 @@ function returnRecipesPage(responseJson) {
 
 function returnRecipeDetails(savedRecipe, obj) {
     let result = [];
-    result.push(`<h2>${savedRecipe.label}</h2>
+    result.push(`<h2 class="recipe-label">${savedRecipe.label}</h2>
     <div class="food-img-container">
-      <img src="${savedRecipe.image}"/>
+      <img src="${savedRecipe.image}" alt="${savedRecipe.label}"/>
     </div>
-    <h3>Source: ${savedRecipe.source}</h3>
+    <h3 class="recipe-source">Source: ${savedRecipe.source}</h3>
     <p>Calories: ${savedRecipe.calories}</p>`);
     
     let ingredientList = [];
@@ -64,6 +64,8 @@ function returnRecipeDetails(savedRecipe, obj) {
     ingredientList.unshift('<ul>');
     ingredientList.push('</ul>');
     ingredientList.unshift('<h4>Ingredients</h4>')
+    ingredientList.unshift('<div class="ingredient-list">')
+    ingredientList.push('</div>')
     result.push(ingredientList.join(''));
 
     let nutrientList = [];
@@ -78,7 +80,7 @@ function returnRecipeDetails(savedRecipe, obj) {
     nutrientList.unshift('<h4>Nutrition Information</h4>')
     result.push(nutrientList.join(''))
 
-    result.push(`<a href="${savedRecipe.url}" target="_blank">Click here for recipe directions</a>`);
+    result.push(`<a href="${savedRecipe.url}" target="_blank" class="recipe-link"><button>Click here for recipe directions</button></a>`);
     result.unshift('<div class="recipe-info">')
     result.push('</div>')
 

@@ -4,7 +4,7 @@
 
 img {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 html {
@@ -26,7 +26,7 @@ header {
     height: 15vh;
     position: fixed;
     top: 0px;
-    background-color: tan;
+    background-color: #F7567C;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -38,7 +38,17 @@ header button {
     width: 75px;
     height: 44px;
     margin: 10px;
+    border-radius: 10px;
+    background-color: #0A2342;
+    color: #FCFCFC;
 }
+
+header h1 {
+    font-size: 32px;
+    margin-left: 10px;
+}
+ 
+
 
 main {
     width: 100%;
@@ -47,6 +57,8 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #FFFAE3;
+
 }
 
 .image-space {
@@ -77,7 +89,10 @@ main {
 
 
 .search-instructions {
+    width: 75%;
     text-align: center;
+    margin: auto;
+    font-size: 22px;
 }
 
 form {
@@ -85,12 +100,17 @@ form {
     flex-direction: column;
     width: 75%;
     padding: 10px 20px;
-    background-color: teal;
+    margin-bottom: 15px;
 }
 
 .form-elem {
     padding: 10px;
     margin: 5px 0px;  
+}
+
+#search-submit {
+    background-color: #0A2342;
+    color: #FCFCFC;
 }
 
 footer {
@@ -99,6 +119,12 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #F7567C;
+
+}
+
+footer h6 {
+    font-size: 18px;
 }
 
 
@@ -112,6 +138,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 15px;
 
 }
 
@@ -122,10 +149,24 @@ footer {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    margin-top: 20px;
-    background-color: thistle;
+    margin: 15px 0px;
 }
 
+.recipe-label {
+    text-align: center;
+    font-size: 26px
+}
+
+.recipe-img-container {
+    border: 2px solid black;
+}
+
+.recipe-button {
+    padding: 15px;
+    margin-top: 15px;
+    background-color: #0A2342;
+    color: #FCFCFC;
+}
 
 
 /**********RECIPE INFO PAGE CSS**********/
@@ -143,4 +184,18 @@ footer {
 
 .food-img-container {
     width: 80%;
+    border: 2px solid black;
+}
+
+.recipe-source {
+    font-size: 22px;
+}
+
+.ingredient-list {
+    border: 2px solid black;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
