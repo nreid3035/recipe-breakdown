@@ -55,11 +55,11 @@ function returnRecipeDetails(savedRecipe, obj) {
       <img src="${savedRecipe.image}" alt="${savedRecipe.label}"/>
     </div>
     <h3 class="recipe-source">Source: ${savedRecipe.source}</h3>
-    <p>Calories: ${savedRecipe.calories}</p>`);
+    <p class="calories">Calories: ${savedRecipe.calories.toFixed(2)}</p>`);
     
     let ingredientList = [];
     for (let i = 0; i < savedRecipe.ingredientLines.length; i++) {
-      ingredientList.push(`<li>${savedRecipe.ingredientLines[i]}</li>`)
+      ingredientList.push(`<li class="ingredient">${savedRecipe.ingredientLines[i]}</li>`)
     }
     ingredientList.unshift('<ul>');
     ingredientList.push('</ul>');
@@ -71,13 +71,16 @@ function returnRecipeDetails(savedRecipe, obj) {
     let nutrientList = [];
     for (let prop in obj) {
         console.log(prop)
+        let quantity = obj[prop].quantity.toFixed(2)
       nutrientList.push(`
-      <li>${obj[prop].label}: ${obj[prop].quantity}${obj[prop].unit}</li>
+      <li class="nutrient">${obj[prop].label}: ${quantity} ${obj[prop].unit}</li>
       `)
     }
     nutrientList.unshift('<ul>');
     nutrientList.push('</ul>');
     nutrientList.unshift('<h4>Nutrition Information</h4>')
+    nutrientList.unshift("<div class='nutrient-list'>")
+    nutrientList.push(`</div>`)
     result.push(nutrientList.join(''))
 
     result.push(`<a href="${savedRecipe.url}" target="_blank" class="recipe-link"><button>Click here for recipe directions</button></a>`);
