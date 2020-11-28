@@ -114,6 +114,8 @@ form {
 }
 
 .form-elem {
+    width: 100%;
+    height: auto;
     padding: 10px;
     margin: 5px 0px; 
     font-family: 'PT Sans'; 
@@ -124,6 +126,8 @@ form {
     color: #FCFCFC;
     font-family: 'PT Sans', sans-serif;
     border-radius: 10px;
+    width: 100%;
+    height: 44px;
 }
 
 footer {
