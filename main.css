@@ -41,11 +41,13 @@ header button {
     border-radius: 10px;
     background-color: #0A2342;
     color: #FCFCFC;
+    font-family: 'PT Sans', sans-serif
 }
 
 header h1 {
     font-size: 32px;
     margin-left: 10px;
+    font-family: 'Cinzel', serif;
 }
  
 
@@ -92,6 +94,7 @@ main {
     text-align: center;
     margin: auto;
     font-size: 22px;
+    font-family: 'PT Sans', sans-serif;
 }
 
 form {
@@ -104,7 +107,8 @@ form {
 
 .form-elem {
     padding: 10px;
-    margin: 5px 0px;  
+    margin: 5px 0px; 
+    font-family: 'PT Sans'; 
 }
 
 #search-submit {
@@ -124,6 +128,7 @@ footer {
 
 footer h6 {
     font-size: 18px;
+    font-family: 'Cinzel', serif;
 }
 
 
@@ -153,7 +158,8 @@ footer h6 {
 
 .recipe-label {
     text-align: center;
-    font-size: 26px
+    font-size: 26px;
+    font-family: 'Playfair Display', serif;
 }
 
 .recipe-img-container {
@@ -165,6 +171,7 @@ footer h6 {
     margin-top: 15px;
     background-color: #0A2342;
     color: #FCFCFC;
+    font-family: 'PT Sans', sans-serif
 }
 
 
@@ -188,10 +195,12 @@ footer h6 {
 
 .recipe-source {
     font-size: 24px;
+    font-family: 'Playfair Display', serif;
 }
 
 .calories {
     font-size: 20px;
+    font-family: 'PT Sans';
 }
 
 .ingredient-list {
@@ -201,10 +210,12 @@ footer h6 {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .ingredient-list h4, .nutrient-list h4 {
     font-size: 22px;
+    font-family: 'Playfair Display', serif;
 }
 
 .ingredient {
@@ -217,6 +228,7 @@ footer h6 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: 'PT Sans';
 }
 
 
@@ -232,6 +244,7 @@ footer h6 {
     align-self: center;
     display: flex;
     justify-content: center;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .recipe-link button {
