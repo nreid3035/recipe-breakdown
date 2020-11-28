@@ -200,7 +200,7 @@ footer h6 {
 }
 
 .food-img-container {
-    width: 80%;
+    width: 60%;
     border: 2px solid black;
 }
 
@@ -277,5 +277,9 @@ footer h6 {
     .food-img-container {
         width: 40%;
         height: auto;
+    }
+
+    form {
+        width: 60%;
     }
 }
