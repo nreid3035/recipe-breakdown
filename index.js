@@ -24,7 +24,7 @@ function returnHomePage(responseJson) {
         <h2 class="search-instructions">Seach for recipes below and find a full nutrition profile!</h2>
         <form action='' id="js-search-form">
             <label class="form-elem" for="search-term">Search by ingredient or style:</label>
-            <input class="form-elem" type="text" name="search-term" id="search-term" placeholder="ex: garlic, italian">
+            <input class="form-elem" type="text" name="search-term" id="search-term" required placeholder="ex: garlic, italian">
             <input class="form-elem" type="submit" id="search-submit">
         </form>
     </div>
